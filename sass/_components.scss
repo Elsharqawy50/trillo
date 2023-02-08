@@ -113,3 +113,79 @@
     font-weight: 700;
   }
 }
+
+/*********** sidebar *************/
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__items {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    list-style: none;
+    margin-top: 3.5rem;
+  }
+
+  &__item {
+    position: relative;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 100%;
+      background-color: var(--color-primary);
+      left: 0;
+      top: 0;
+      transform: scaleY(0);
+      transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s,
+        background-color 0.1s;
+    }
+
+    &:hover::before,
+    &--active::before {
+      transform: scaleY(1);
+      width: 100%;
+    }
+
+    &:active::before {
+      background-color: var(--color-primary-light);
+    }
+  }
+
+  &__link:visited,
+  &__link:link {
+    display: block;
+    padding: 1.5rem 3rem;
+    text-decoration: none;
+    color: var(--color-grey-light-1);
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    position: relative;
+  }
+
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 2rem;
+    fill: currentColor;
+  }
+
+  &__name {
+  }
+}
+
+/*********** legal *************/
+.legal {
+  font-size: 1.2rem;
+  color: var(--color-grey-light-4);
+  text-align: center;
+  padding: 2.5rem;
+}
