@@ -1,6 +1,10 @@
 /*********** logo *************/
 .logo {
   height: 3.25rem;
+
+  @media only screen and (max-width: $bp_smallest) {
+    padding-left: 2rem;
+  }
 }
 
 /*********** search *************/
@@ -9,6 +13,12 @@
   justify-content: center;
   align-items: center;
   flex: 0 0 40%;
+
+  @media only screen and (max-width: $bp_smallest) {
+    order: 1;
+    flex: 0 0 100%;
+    background-color: var(--color-grey-light-2);
+  }
 
   &__input {
     border: 0;
@@ -125,6 +135,11 @@
     text-transform: uppercase;
     list-style: none;
     margin-top: 3.5rem;
+
+    @media only screen and (max-width: $bp_medium) {
+      margin: 0;
+      display: flex;
+    }
   }
 
   &__item {
@@ -157,6 +172,14 @@
     &:active::before {
       background-color: var(--color-primary-light);
     }
+
+    @media only screen and (max-width: $bp_medium) {
+      flex: 1;
+
+      &:not(:last-child) {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &__link:visited,
@@ -169,6 +192,16 @@
     align-items: center;
     z-index: 10;
     position: relative;
+
+    @media only screen and (max-width: $bp_small) {
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    @media only screen and (max-width: $bp_smallest) {
+      font-size: 1.3rem;
+      padding: 0.8rem 1.6rem;
+    }
   }
 
   &__icon {
@@ -176,6 +209,15 @@
     width: 2rem;
     margin-right: 2rem;
     fill: currentColor;
+
+    @media only screen and (max-width: $bp_small) {
+      margin: 0;
+    }
+
+    @media only screen and (max-width: $bp_smallest) {
+      height: 1.3rem;
+      width: 1.3rem;
+    }
   }
 }
 
@@ -185,6 +227,10 @@
   color: var(--color-grey-light-4);
   text-align: center;
   padding: 2.5rem;
+
+  @media only screen and (max-width: $bp_medium) {
+    display: none;
+  }
 }
 
 /*********** gallery *************/
@@ -209,6 +255,10 @@
     font-weight: 300;
     padding: 1.5rem 3rem;
     letter-spacing: 0;
+
+    @media only screen and (max-width: $bp_smallest) {
+      font-size: 1.6rem;
+    }
   }
 
   &__stars {
@@ -221,12 +271,21 @@
     width: 1.75rem;
     height: 1.75rem;
     fill: var(--color-primary);
+
+    @media only screen and (max-width: $bp_smallest) {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
   }
 
   &__location {
     display: flex;
     align-items: center;
     font-size: 1.2rem;
+
+    @media only screen and (max-width: $bp_smallest) {
+      font-size: 0.7rem;
+    }
   }
 
   &__icon-location {
@@ -243,13 +302,22 @@
     color: var(--color-white);
     background-color: var(--color-primary);
     margin-left: 3rem;
+
     &-rate {
       font-size: 2.25rem;
       font-weight: 300;
+
+      @media only screen and (max-width: $bp_smallest) {
+        font-size: 1.6rem;
+      }
     }
 
     &-count {
       text-transform: uppercase;
+
+      @media only screen and (max-width: $bp_smallest) {
+        font-size: 0.8rem;
+      }
     }
   }
 }
@@ -327,15 +395,18 @@
       width: 1rem;
 
       //older
-      // background-image: url(../img/chevron-thin-right.svg);
-      // background-size: cover;
+      background-image: url(../img/chevron-thin-right.svg);
+      background-size: cover;
 
       //newer
-      background-color: var(--color-primary);
-      mask-image: url(../img/chevron-thin-right.svg);
-      mask-size: cover;
-      -webkit-mask-image: url(../img/chevron-thin-right.svg);
-      -webkit-mask-size: cover;
+      @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+        background-color: var(--color-primary);
+        mask-image: url(../img/chevron-thin-right.svg);
+        mask-size: cover;
+        -webkit-mask-image: url(../img/chevron-thin-right.svg);
+        -webkit-mask-size: cover;
+        background-image: none;
+      }
     }
   }
 }
@@ -348,6 +419,10 @@
 
   &__text {
     color: var(--color-grey-dark-3);
+  }
+
+  &__photo {
+    display: flex;
   }
 
   &__img {
@@ -370,6 +445,11 @@
   padding: 2.5rem;
   position: relative;
   overflow: hidden;
+
+  @media only screen and (max-width: $bp_medium) {
+    margin-bottom: 2rem;
+    padding: 2rem;
+  }
 
   &__text {
     margin-bottom: 2rem;
@@ -422,5 +502,70 @@
     color: var(--color-grey-light-2);
     font-family: sans-serif;
     z-index: 1;
+  }
+}
+
+/*********** cta *************/
+.cta {
+  padding: 3.5rem 0;
+  text-align: center;
+
+  &__book {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+/*********** cta action *************/
+.btn {
+  border: 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+  padding: 1.5rem 4rem;
+  box-shadow: var(--line-bottom);
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary-light),
+    var(--color-primary-dark)
+  );
+  color: var(--color-white);
+  text-transform: uppercase;
+  border-radius: 150rem;
+  cursor: pointer;
+  overflow: hidden;
+
+  span {
+    display: block;
+    transition: all 0.3s;
+  }
+
+  &__visible {
+    transform: translateY(-10rem);
+  }
+
+  &__invisible {
+    transform: translateY(-0.6rem);
+  }
+
+  &:hover {
+    background-image: linear-gradient(
+      to left,
+      var(--color-primary-light),
+      var(--color-primary-dark)
+    );
+    .btn__visible {
+      transform: translateY(1rem);
+    }
+
+    .btn__invisible {
+      transform: translateY(10rem);
+    }
+  }
+
+  &:focus {
+    outline: none;
+    animation: pules 1s infinite;
   }
 }
